@@ -1,0 +1,62 @@
+*{
+      font-family: 'Source Sans Pro', sans-serif;
+}
+
+.page-header{
+      background-color: mediumpurple;
+      height : 200px;
+}
+
+.page-header-content{
+      width : 900px;
+      padding: 0px 35px 20px;
+      margin: auto;
+      text-align : center;
+}
+
+.vis1, .vis2, .vis3, .vis4-full{
+      padding-bottom: 20px;
+}
+
+.vis4{
+      padding-left: 50px;
+}
+
+.title img{
+      width: 100px;
+      top: 10px;
+      left: 983px;
+      position: absolute;
+}
+.page {
+      width : 900px;
+      background-color : white;
+      padding: 35px;
+      margin: auto;
+      margin-top : -65px;
+}
+
+.page-img img{
+  width : 174px;
+  height : 140px;
+  padding : 25px 18px 0px;
+      
+}
+
+.title h1 {
+  font-weight : 900;
+  font-size: 4em;
+  color: gold;
+}
+
+.intro{
+  margin-bottom: 20px;
+}
+
+.vis-container{
+      width: 100%;
+}
+
+body {
+  background-color : bisque; 
+}
