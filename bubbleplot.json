@@ -1,0 +1,200 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 400,
+  "height": 300,
+  "title": "Relationship between Score of happiness with different types of score",
+  "data": {
+    "url": "https://raw.githubusercontent.com/angu0043/DataViz2/main/FullData.csv"
+  },
+  "params": [
+    {
+      "name": "Score_selection",
+      "value": "GDP per capita",
+      "bind": {
+        "input": "select",
+        "options": [
+          "GDP per capita",
+          "Social support",
+          "Healthy life expectancy",
+          "Freedom to make life choices",
+          "Generosity",
+          "Perceptions of corruption"
+        ],
+        "labels": [
+          "GDP per capita",
+          "Social Support",
+          "Healthy life expectancy",
+          "Freedom to make life choices",
+          "Generosity",
+          "Perceptions of corruption"
+        ],
+        "name": "Score Selection: "
+      }
+    },
+    {
+      "name": "Year_selection",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2019,
+        "step": 1,
+        "name": "Year : "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "datum[Score_selection]", "as": "Chosen score"},
+    {"calculate": "Year_selection", "as": "Chosen Year"},
+    {"filter": "datum.Year == Year_selection"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 40,
+        "x": 225,
+        "y": 150,
+        "opacity": 0.002
+      },
+      "encoding": {"text": {"field": "Year"}}
+    },
+    {
+      "encoding": {
+        "x": {
+          "field": "Score",
+          "type": "quantitative",
+          "title": "Score of happiness",
+          "scale": {"domain" : [2,8]},
+          "axis" : {
+            "tickCount" : 8
+          }
+        },
+        "y": {
+          "field": "Chosen score",
+          "type": "quantitative",
+          "title": "Chosen score",
+          "axis" : {
+            "tickCount" : 8
+          }
+        }
+      },
+      "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "x": {
+            "field": "Score",
+            "type": "quantitative",
+            "title": "Score of happiness",
+            "axis": {"tickCount": 8}
+          },
+          "y": {
+            "field": "Chosen score",
+            "type": "quantitative",
+            "title": "Chosen score",
+            "axis": {"tickCount": 8}
+          },
+          "color": 
+          {
+            "field": "Continent", 
+            "type": "nominal",
+            "scale": {
+              "scheme" : "accent"
+            }
+          },
+          "tooltip": [
+            {"field": "Country or region", "title": "Country", "type": "nominal"},
+            {
+              "field": "Score",
+              "title": "Score of happiness",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "GDP per capita",
+              "title": "GDP",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {"field": "Social support", "type": "quantitative", "format": ".2f"},
+            {
+              "field": "Healthy life expectancy",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "Freedom to make life choices",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "Perceptions of corruption",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {"field": "Generosity", "type": "quantitative", "format": ".2f"},
+            {"field": "Year", "type": "ordinal"}
+          ]
+        }
+      },
+      {
+        "mark" : {
+          "type" : "text",
+          "align" : "right",
+          "baseline" : "middle",
+          "dx" : -12,
+          "fontSize": 11.5,
+          "fontStyle": "italic"
+        },
+        "encoding": {
+          "text": {"field" : "Country or region","type" : "nominal"},
+          "color": {"value": "black"},
+          "opacity": {
+            "condition": {
+              "test": "datum['Country or region'] == 'China' || datum['Country or region'] =='Uganda' || datum['Country or region'] == 'Australia' || datum['Country or region'] == 'New Zealand' || datum['Country or region'] == 'Italy' || datum['Country or region'] == 'Vietnam' || datum['Country or region'] == 'Yemen'",
+              "value": 1
+            },
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Country or region", "title": "Country", "type": "nominal"},
+            {
+              "field": "Score",
+              "title": "Score of happiness",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "GDP per capita",
+              "title": "GDP",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {"field": "Social support", "type": "quantitative", "format": ".2f"},
+            {
+              "field": "Healthy life expectancy",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "Freedom to make life choices",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {
+              "field": "Perceptions of corruption",
+              "type": "quantitative",
+              "format": ".2f"
+            },
+            {"field": "Generosity", "type": "quantitative", "format": ".2f"},
+            {"field": "Year", "type": "ordinal"}
+          ]
+        }
+      }
+    ]
+    }
+  ],
+  "config": {}
+}
+

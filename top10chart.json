@@ -1,0 +1,92 @@
+
+ {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 300,
+  "height": 300,
+  "title" : "Top 10 countries by score selected",
+  "data":
+  {
+    "url": "https://raw.githubusercontent.com/angu0043/DataViz2/main/FullData.csv"
+  },
+  "params": [
+    {
+      "name": "Score_selection",
+      "value" : "Score",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Score",
+          "GDP per capita",
+          "Social support",
+          "Healthy life expectancy",
+          "Freedom to make life choices",
+          "Generosity",
+          "Perceptions of corruption"
+        ],
+        "labels": [
+          "Score of happiness",
+          "GDP per capita",
+          "Social Support",
+          "Healthy life expectancy",
+          "Freedom to make life choices",
+          "Generosity",
+          "Perceptions of corruption"
+        ],
+        "name": "Score Selection: "
+      }
+    },
+    {
+      "name": "Year_selection",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2019,
+        "step": 1,
+        "name": "Year : "
+      }
+    }
+  ],
+  "mark":"bar",
+  "transform": [
+
+    {"calculate": "datum[Score_selection]", "as": "Chosen score"},
+    {"filter": "datum.Year == Year_selection"},
+    {
+      "window" : [
+        {
+          "op" : "row_number",
+          "as" : "Score Rank"
+        }
+      ],
+      "sort": [
+        {
+          "field" : "Chosen score",
+          "order" : "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum['Score Rank'] < 10 ? datum['Country or region'] : 'All Others'",
+      "as" : "ranked_country"
+    }
+  ],
+  "encoding": {
+    "x":
+    {
+      "field": "Chosen score",
+      "type" : "quantitative",
+      "title": null
+    },
+    "y":
+    {
+       "sort": {"op": "mean", "field": "Chosen score", "order": "descending"},
+      "field" : "ranked_country",
+      "type" : "ordinal",
+      "title": null
+    },
+    "color": {
+      "value" : "#c39b77"
+    }
+  }
+}
