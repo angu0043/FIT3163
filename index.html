@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <!-- Import vega-embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="style.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+<div class = "page-header" >
+  <div class = "page-header-content">
+    <div class = "pure-g">
+      <div class="title pure-u-1-1">
+        <h1> World of Happiness </h1>
+        <img src = "2birds.png"> 
+      </div> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class = "page" >
+<section>
+  <div class = "intro pure-g">
+    <div class="page-img pure-u-1-4">
+      <img src = "kidpeace.png" >
+    </div>
+    <div class = "pure-u-3-4">
+      <h2> Introduction </h2>
+      <div class = "description">
+          This visualization will give viewers an overview of the interesting, livable and happiness of all countries around the world. The datasets and ranking we have
+          is between the period 2015 - 2019. The score of happiness in each country will be calculated by combine the score of 6 different aspects : GDP score, Social 
+          support, Healthy life expectency, Freedom to make life choices, Perceptions of corruption and Generosity of people. Hope that my visualization will help viewers
+          answer questions they expect, like 'How is the country he is living in on the ranking of the most livable countries in the world?'
+       </div>
+     </div>
+  </div>
+  <article>
+    <div class = "pure-g vis1"> 
+      <div class = "vis1-des pure-u-1-3">
+         <h2> Distribution of Happiness </h2>
+        <p>
+           Te visualization shows us the distribution of happiness score in all countries from the world in 2019. We can hover over the space of the country to see what is their actual score of happiness.
+        </p>
+      </div>
+      <div class = "pure-u-2-3">
+        <div id = "vis1" class="vis-container">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article>
+     <div class = "pure-g vis2">
+       <div class = "pure-u-2-3">
+         <div class = "vis-container" id = "vis2">
+         </div>
+       </div>
+       <div class = "vis2-des pure-u-1-3">
+         <h2> Relationship between others attributes score with the happiness score </h2>
+         <p>
+           This visualization shows us the relaitionship between different other's score with with score of happiness. The users can choose which score to be shown
+           in the selection menu. Also the year slider will let people choose the data in which year will be shown between 2015-2019.
+         </p>
+       </div>
+     </div>
+     <div class = "pure-g vis4-full">
+       <div class = "vis4-des pure-u-1-3">
+         <h2> Average Happiness score in continent level </h2>
+         <p>
+           This vusalization shows us different score in coninent levels. The boxplot also show the 75% quantile with the mean in each continent of happiness score. 
+           And the bar chart will shows us the mean in all the continents. 
+         </p>  
+       </div>
+       <div class = "pure-u-2-3">
+         <div class = "vis-container vis4" id = "vis4">
+         </div>
+       </div>
+    </div>
+    <div class = "pure-g">
+      <div class = "pure-u-1-2">
+         <div class = "vis3 vis-container" id = "vis3">
+         </div>
+      </div> 
+      <div class = "pure-u-1-2 vis3-des"> 
+        <h2> Top 10 countries in different score </h2>
+        <p>
+          This visualisation will shows the top 10 countries which leads in each score from 2015-2019. The users can choose which score to be shown
+           in the selection menu. Also the year slider will let people choose the data in which year will be shown between 2015-2019.
+        </p>
+      </div>
+    </div>
+  </article> 
+  <div class = "pure-g">
+    <div class = "pure-u-1-1">
+      <p>
+        This visualisation is created by 
+        <a href = "https://github.com/angu0043/DataViz2"> Anh Quan Nguyen </a>.
+        The data source can be found from 
+        <a href = "https://www.kaggle.com/unsdsn/world-happiness"> Kaggle </a>
+      </p>  
+    </div>
+  </div>
+</section>
+
+  </div>
+<script type="text/javascript">
+  
+  var spec1 = "choropleth.json";
+  vegaEmbed('#vis1', spec1).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var spec2 = "bubbleplot.json";
+  vegaEmbed('#vis2', spec2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var spec3 = "top10chart.json";
+  vegaEmbed('#vis3', spec3).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+   var spec4 = "continentchart.json";
+  vegaEmbed('#vis4', spec4).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+
+</body>
+</html>
